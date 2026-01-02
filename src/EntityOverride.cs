@@ -21,7 +21,7 @@ public class EntityOverride : AutoFakerOverride<Entities.Entity.Entity>
         // These can be overriden with more specific type overrides
         target.Id = context.Faker.Random.Guid().ToString();
 
-        DateTime utcNow = DateTime.UtcNow;
+        DateTimeOffset utcNow = DateTimeOffset.UtcNow;
         target.CreatedAt = utcNow;
         target.ModifiedAt = utcNow;
     }
