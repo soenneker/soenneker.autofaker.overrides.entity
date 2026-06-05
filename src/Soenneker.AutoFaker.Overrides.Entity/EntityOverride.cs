@@ -9,11 +9,20 @@ namespace Soenneker.AutoFaker.Overrides.Entity;
 /// </summary>
 public class EntityOverride : AutoFakerOverride<Entities.Entity.Entity>
 {
+    /// <summary>
+    /// Executes the can override operation.
+    /// </summary>
+    /// <param name="context">The context.</param>
+    /// <returns>A value indicating whether the operation succeeded.</returns>
     public override bool CanOverride(AutoFakerContext context)
     {
         return context.GenerateType.IsSubclassOf(typeof(Entities.Entity.Entity));
     }
 
+    /// <summary>
+    /// Executes the generate operation.
+    /// </summary>
+    /// <param name="context">The context.</param>
     public override void Generate(AutoFakerOverrideContext context)
     {
         var target = (context.Instance as Entities.Entity.Entity)!;
