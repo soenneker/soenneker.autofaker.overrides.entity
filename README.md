@@ -5,20 +5,24 @@
 
 # Soenneker.AutoFaker.Overrides.Entity
 
-An AutoFaker (AutoBogus) override for the object Entity.
+An AutoFaker override that provides identity and audit fields for `Entity` models.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.AutoFaker.Overrides.Entity
 ```
 
-## What you get
+## Usage
 
-- `EntityOverride` — An AutoFaker (AutoBogus) override for the object Entity.
+```csharp
+using Soenneker.AutoFaker.Overrides.Entity;
+using Soenneker.Utils.AutoBogus;
 
-## API at a glance
+var autoFaker = new AutoFaker();
+autoFaker.Config.Overrides = [new EntityOverride()];
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `EntityOverride.CanOverride(context)` | Executes the can override operation. | A value indicating whether the operation succeeded. |
+CustomerEntity entity = autoFaker.Generate<CustomerEntity>();
+```
+
+The override applies to `Entity` and derived types. It assigns a GUID string to `Id` and uses one current UTC timestamp for both `CreatedAt` and `ModifiedAt`. Put a more specific matching override later in the configuration if it should replace these defaults.
